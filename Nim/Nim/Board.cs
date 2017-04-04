@@ -8,22 +8,21 @@ namespace Nim
 {
     class Board
     {
-        int numOfPieces = 15;
-        char[][] pieces;
-        public Board()
-        {
-            setBaseState();
-        }
-
-        private void setBaseState()
+        static int numOfPieces = 15;
+        static char[][] pieces;
+        static private void setBaseState()
         {
             
         }
-        public bool takePiece(int row, int numOfPiecesToTake)
+        static public void takePiece(int row, int numOfPiecesToTake)
         {
-
+            numOfPieces -= numOfPiecesToTake;
+            for(int i = 0; i <= numOfPieces; i++)
+            {
+                pieces[row][i].Equals(' ');
+            }
         }
-        public void printBoard()
+        static public void printBoard()
         {
             for(int i = 0; i < 3; i++)
             {
@@ -39,6 +38,10 @@ namespace Nim
                     }
                 }
             }
+        }
+        static public bool validatePiece(int row, int numOfPiecesToTake)
+        {
+
         }
     }
 }
