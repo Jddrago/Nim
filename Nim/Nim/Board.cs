@@ -19,13 +19,26 @@ namespace Nim
         {
             
         }
-        public void takePiece(int row, int numOfPiecesToTake)
+        public bool takePiece(int row, int numOfPiecesToTake)
         {
 
         }
         public void printBoard()
         {
-
+            for(int i = 0; i < 3; i++)
+            {
+                for(int j = 0; i < 7; j++)
+                {
+                    if(j == 0)
+                    {
+                        Console.WriteLine(pieces[i][j]);
+                    }
+                    else
+                    {
+                        Console.Write(pieces[i][j]);
+                    }
+                }
+            }
         }
     }
 }
