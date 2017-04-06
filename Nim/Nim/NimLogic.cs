@@ -60,9 +60,9 @@ namespace Nim
                     }
                     switch (row)
                     {
-                        case 0: if(numPieces > 3) { numPieces = -1; Console.Write("That row doesn't have that many pieces."); }; break;
-                        case 1: if (numPieces > 5) { numPieces = -1; Console.Write("That row doesn't have that many pieces."); }; break;
-                        case 2: if (numPieces > 7) { numPieces = -1; Console.Write("That row doesn't have that many pieces."); }; break;
+                        case 0: if(numPieces > 3 || Board.row1mod + numPieces > 3) { numPieces = -1; Console.Write("That row doesn't have enough pieces."); }; break;
+                        case 1: if (numPieces > 5 || Board.row2mod + numPieces > 5) { numPieces = -1; Console.Write("That row doesn't have enough pieces."); }; break;
+                        case 2: if (numPieces > 7 || Board.row3mod + numPieces > 7) { numPieces = -1; Console.Write("That row doesn't have enough pieces."); }; break;
                     }
                 } while (numPieces == -1);
                 Board.takePiece(row, numPieces);
@@ -109,7 +109,7 @@ namespace Nim
 
         public int PromptForNumPiecesTaken(int row)
         {
-            Console.WriteLine("Please enter how many pieces you wish to take from" + row);
+            Console.WriteLine("Please enter how many pieces you wish to take from " + (row + 1));
             int numPieces;
             if (int.TryParse(Console.ReadLine(), out numPieces))
             {

@@ -8,7 +8,7 @@ namespace Nim
 {
     class Player
     {
-        private int playernumber = 1;
+        private static int playernumber = 1;
         string Name { get; set; }
         public string getName()
         {
@@ -19,12 +19,13 @@ namespace Nim
             if(name.Equals("")|| name.Equals(null))
             {
                 Name = "Player " + playernumber;
+                playernumber++;
             }
             else
             {
                 Name = name;
+                playernumber++;
             }
-            playernumber++;
         }
     }
 }
