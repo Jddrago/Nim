@@ -10,7 +10,7 @@ namespace Nim
     {
         static int numOfPieces = 15;
         static char[][] pieces;
-        static private void setBaseState()
+        static public void setBaseState()
         {
             
         }

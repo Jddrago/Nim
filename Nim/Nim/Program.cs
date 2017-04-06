@@ -10,6 +10,8 @@ namespace Nim
     {
         static void Main(string[] args)
         {
+            NimLogic nim = new NimLogic();
+            nim.Run();
         }
     }
 }
