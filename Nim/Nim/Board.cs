@@ -41,7 +41,12 @@ namespace Nim
         }
         static public bool validatePiece(int row, int numOfPiecesToTake)
         {
+            bool valid = true;
+            if ()
+            {
 
+            }
+            return valid;
         }
     }
 }
