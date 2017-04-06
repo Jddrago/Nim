@@ -8,10 +8,12 @@ namespace Nim
 {
     class Board
     {
-        static int numOfPieces = 15;
-        static char[][] pieces;
+        public static int numOfPieces = 15;
+        static int numRows = 3, numColumns = 7, row1mod = 0, row2mod =0, row3mod = 0;
+        static char[,] pieces = new char[numRows,numColumns];
         static public void setBaseState()
         {
+            initBoard();
             for(int i = 0; i < 3; i++)
             {
                 int numToAdd = 0;
@@ -23,13 +25,13 @@ namespace Nim
                 }
                 for(int j = 0; j < 7; j++)
                 {
-                    if (j <= numToAdd)
+                    if (j < numToAdd)
                     {
-                        pieces[i][j] = 'X';
+                        pieces[i,j] = 'X';
                     }
                     else
                     {
-                        pieces[i][j] = ' ';
+                        pieces[i,j] = ' ';
                     }
                 }
             }
@@ -37,24 +39,43 @@ namespace Nim
         static public void takePiece(int row, int numOfPiecesToTake)
         {
             numOfPieces -= numOfPiecesToTake;
-            for(int i = 0; i <= numOfPieces; i++)
+            switch (row)
             {
-                pieces[row][i].Equals(' ');
+                case 0: for (int i = 0; i < numOfPiecesToTake; i++)
+                {
+                    pieces[row, i + row1mod] = ' ';
+                }
+                    row1mod += numOfPiecesToTake;
+                    break;
+                case 1:
+                    for (int i = 0; i < numOfPiecesToTake; i++)
+                    {
+                        pieces[row, i + row2mod] = ' ';
+                    }
+                    row2mod += numOfPiecesToTake;
+                    break;
+                case 2:
+                    for (int i = 0; i < numOfPiecesToTake; i++)
+                    {
+                        pieces[row, i + row3mod] = ' ';
+                    }
+                    row3mod += numOfPiecesToTake;
+                    break;
             }
         }
         static public void printBoard()
         {
-            for(int i = 0; i < 3; i++)
+            for(int i = 0; i < numRows; i++)
             {
-                for(int j = 0; i < 7; j++)
+                for(int j = 0; j < numColumns; j++)
                 {
-                    if(j == 0)
+                    if(j == numColumns-1)
                     {
-                        Console.WriteLine(pieces[i][j]);
+                        Console.WriteLine(pieces[i,j]);
                     }
                     else
                     {
-                        Console.Write(pieces[i][j]);
+                        Console.Write(pieces[i,j]);
                     }
                 }
             }
@@ -67,6 +88,17 @@ namespace Nim
                 
             }
             return valid;
+        }
+
+        static private void initBoard()
+        {
+            for (int i = 0; i < numRows; i++)
+            {
+                for (int j = 0; j < numColumns; j++)
+                {
+                    pieces[i,j] = new char();
+                }
+            }
         }
     }
 }
