@@ -52,9 +52,10 @@ namespace Nim
                 do
                 {
                     row = PromptForRow();
-                    if (row == -1)
+                    if (row < 1 && row > 3)
                     {
                         Console.WriteLine("Invalid input please enter a valid row number.");
+                        row = -1;
                     }
                 } while (row == -1);
                 do
