@@ -19,7 +19,7 @@ namespace Nim
             Console.WriteLine(players[0].getName() + ", " + players[1].getName());
             gameLoop();
         }
-
+          
 
 
 
