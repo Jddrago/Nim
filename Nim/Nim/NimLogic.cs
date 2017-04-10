@@ -13,17 +13,11 @@ namespace Nim
         public void Run()
         {
             Board.setBaseState();
-            createPlayers();
-            PromptForName(players[0]);
-            PromptForName(players[1]);
+            int gameType = promptForGameType();
+            createPlayers(gameType);
             Console.WriteLine(players[0].getName() + ", " + players[1].getName());
             gameLoop();
         }
-
-
-
-
-
 
 
         public void PromptForName(Player player)
@@ -33,11 +27,40 @@ namespace Nim
             player.setName(name);
         }
 
-        public void createPlayers()
+        public int promptForGameType()
+        {
+            Console.WriteLine("Select game type:\n1: PVP\n2: P v CPU\n3: CPU v CPU");
+            int output = -1;
+            string temp;
+            temp = Console.ReadLine();
+            do
+            {
+                int.TryParse(temp, out output);
+            } while (output < 0 && output > 3);
+            return output;
+        }
+
+        public void createPlayers(int gameType)
         {
             players = new Player[2];
-            players[0] = new Player();
-            players[1] = new Player();
+            switch (gameType)
+            {
+                case 1:
+                    players[0] = new Player();
+                    players[1] = new Player();
+                    PromptForName(players[0]);
+                    PromptForName(players[1]);
+                    break;
+                case 2:
+                    players[0] = new Player();
+                    players[1] = new Computer();
+                    PromptForName(players[0]);
+                    break;  //p v cpu
+                case 3:
+                    players[0] = new Computer();
+                    players[1] = new Computer();
+                    break;  //cpu v cpu
+            }
         }
 
         public void gameLoop()

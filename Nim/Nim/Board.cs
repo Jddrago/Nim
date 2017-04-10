@@ -80,15 +80,6 @@ namespace Nim
                 }
             }
         }
-        static public bool validatePiece(int row, int numOfPiecesToTake)
-        {
-            bool valid = false;
-            switch (row)
-            {
-                
-            }
-            return valid;
-        }
 
         static private void initBoard()
         {
