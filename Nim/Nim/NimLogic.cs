@@ -13,18 +13,12 @@ namespace Nim
         public void Run()
         {
             Board.setBaseState();
-            createPlayers();
-            PromptForName(players[0]);
-            PromptForName(players[1]);
+            int gameType = promptForGameType();
+            createPlayers(gameType);
             Console.WriteLine(players[0].getName() + ", " + players[1].getName());
             gameLoop();
         }
           
-
-
-
-
-
 
         public void PromptForName(Player player)
         {
@@ -33,11 +27,43 @@ namespace Nim
             player.setName(name);
         }
 
-        public void createPlayers()
+        public int promptForGameType()
+        {
+            int output = -1;
+            string temp;
+            do
+            {
+                Console.WriteLine("Select game type:\n1: PVP\n2: P v CPU\n3: CPU v CPU");
+                temp = Console.ReadLine();
+                int.TryParse(temp, out output);
+            } while (output < 1 || output > 3);
+            return output;
+        }
+
+        public void createPlayers(int gameType)
         {
             players = new Player[2];
-            players[0] = new Player();
-            players[1] = new Player();
+            switch (gameType)
+            {
+                case 1:
+                    players[0] = new Player();
+                    players[1] = new Player();
+                    PromptForName(players[0]);
+                    PromptForName(players[1]);
+                    break;
+                case 2:
+                    players[0] = new Player();
+                    players[1] = new Computer();
+                    PromptForName(players[0]);
+                    players[1].setName("");
+                    break;  //p v cpu
+                case 3:
+                    players[0] = new Computer();
+                    players[1] = new Computer();
+                    players[0].setName("");
+                    players[1].setName("");
+                    break;  //cpu v cpu
+            }
         }
 
         public void gameLoop()
@@ -46,32 +72,7 @@ namespace Nim
             do
             {
                 Board.printBoard();
-                Console.WriteLine(currentPlayer.getName() + "'s turn.");
-                int row;
-                int numPieces;
-                do
-                {
-                    row = PromptForRow();
-                    if (row == -1)
-                    {
-                        Console.WriteLine("Invalid input please enter a valid row number.");
-                    }
-                } while (row == -1);
-                do
-                {
-                    numPieces = PromptForNumPiecesTaken(row);
-                    if (numPieces == -1)
-                    {
-                        Console.WriteLine("Invalid input please enter a valid number of pieces.");
-                    }
-                    switch (row)
-                    {
-                        case 0: if(numPieces > 3 || Board.row1mod + numPieces > 3) { numPieces = -1; Console.Write("That row doesn't have enough pieces."); }; break;
-                        case 1: if (numPieces > 5 || Board.row2mod + numPieces > 5) { numPieces = -1; Console.Write("That row doesn't have enough pieces."); }; break;
-                        case 2: if (numPieces > 7 || Board.row3mod + numPieces > 7) { numPieces = -1; Console.Write("That row doesn't have enough pieces."); }; break;
-                    }
-                } while (numPieces == -1);
-                Board.takePiece(row, numPieces);
+                currentPlayer.takeTurn();
                 if (currentPlayer.Equals(players[0]))
                 {
                     currentPlayer = players[1];
@@ -102,7 +103,7 @@ namespace Nim
             }
         }
 
-        public int PromptForRow()
+        public static int PromptForRow()
         {
             Console.WriteLine("Please select which row you wish to take from(1-3): ");
             int row;
@@ -113,7 +114,7 @@ namespace Nim
             return -1;
         }
 
-        public int PromptForNumPiecesTaken(int row)
+        public static int PromptForNumPiecesTaken(int row)
         {
             Console.WriteLine("Please enter how many pieces you wish to take from " + (row + 1));
             int numPieces;
