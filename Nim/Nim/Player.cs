@@ -28,7 +28,7 @@ namespace Nim
             }
         }
 
-        public void takeTurn()
+        public virtual void takeTurn()
         {
             Console.WriteLine(getName() + "'s turn.");
             int row;

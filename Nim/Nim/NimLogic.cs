@@ -29,14 +29,14 @@ namespace Nim
 
         public int promptForGameType()
         {
-            Console.WriteLine("Select game type:\n1: PVP\n2: P v CPU\n3: CPU v CPU");
             int output = -1;
             string temp;
-            temp = Console.ReadLine();
             do
             {
+                Console.WriteLine("Select game type:\n1: PVP\n2: P v CPU\n3: CPU v CPU");
+                temp = Console.ReadLine();
                 int.TryParse(temp, out output);
-            } while (output < 0 && output > 3);
+            } while (output < 1 || output > 3);
             return output;
         }
 
@@ -55,10 +55,13 @@ namespace Nim
                     players[0] = new Player();
                     players[1] = new Computer();
                     PromptForName(players[0]);
+                    players[1].setName("");
                     break;  //p v cpu
                 case 3:
                     players[0] = new Computer();
                     players[1] = new Computer();
+                    players[0].setName("");
+                    players[1].setName("");
                     break;  //cpu v cpu
             }
         }

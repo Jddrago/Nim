@@ -8,6 +8,9 @@ namespace Nim
 {
     class Computer : Player
     {
-        
+        public override void takeTurn()
+        {
+            
+        }
     }
 }
