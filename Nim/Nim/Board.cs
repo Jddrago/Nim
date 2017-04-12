@@ -96,7 +96,7 @@ namespace Nim
         static public void SaveBoardState(string file)
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(file, FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(file, FileMode.Append, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, pieces);
             stream.Close();
         }
