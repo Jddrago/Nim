@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nim
 {
-    class Board
+    public class Board
     {
         public static int numOfPieces = 15, row1mod = 0, row2mod = 0, row3mod = 0;
         public static int numRows = 3, numColumns = 7;
