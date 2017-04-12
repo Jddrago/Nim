@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nim
 {
-    class Player
+   public class Player
     {
         private static int playernumber = 1;
         string Name { get; set; }
