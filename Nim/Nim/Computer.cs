@@ -18,29 +18,64 @@ namespace Nim
 
         public void simpleAI()
         {
-            bool validRow = true, validnumPieces = true;
-            do
-            {
-                int rowChoice = new Random().Next(row1max);
-                switch (rowChoice)
-                {
-                    case 0:
-                        if (Board.row1mod == row1max) { validRow = false; } else { validRow = true; };
-                        break;
-                    case 1:
-                        if (Board.row2mod == row2max) { validRow = false;} else { validRow = true; };
-                        break;
-                    case 2:
-                        if (Board.row3mod == row3max) { validRow = false; } else { validRow = true; };
-                        break;
-                }
-            } while (!validRow);
+            int row = -1, numpieces = -1;
+            row = chooseRow();
+            numpieces = selectPieces(row);
 
         }
 
         public void learningAI()
         {
             throw new NotImplementedException();
+        }
+
+        public int chooseRow()
+        {
+            int rowChoice;
+            bool validRow = true;
+            do
+            {
+                rowChoice = new Random().Next(row1max);
+                switch (rowChoice)
+                {
+                    case 0:
+                        if (Board.row1mod == row1max) { validRow = false; } else { validRow = true; };
+                        break;
+                    case 1:
+                        if (Board.row2mod == row2max) { validRow = false; } else { validRow = true; };
+                        break;
+                    case 2:
+                        if (Board.row3mod == row3max) { validRow = false; } else { validRow = true; };
+                        break;
+                }
+            } while (!validRow);
+            return rowChoice;
+        }
+
+        public int selectPieces(int row)
+        {
+            int numPieces;
+            bool validNumPieces = true;
+            do
+            {
+                numPieces = new Random().Next(row1max);
+                switch (row)
+                {
+                    case 0:
+                        numPieces = new Random().Next(row1max);
+                        if (numPieces + Board.row1mod >= row1max) { validNumPieces = false; } else { validNumPieces = true; };
+                        break;
+                    case 1:
+                        numPieces = new Random().Next(row1max);
+                        if (numPieces + Board.row2mod >= row2max) { validNumPieces = false; } else { validNumPieces = true; };
+                        break;
+                    case 2:
+                        numPieces = new Random().Next(row1max);
+                        if (numPieces + Board.row3mod >= row3max) { validNumPieces = false; } else { validNumPieces = true; };
+                        break;
+                }
+            } while (!validNumPieces);
+            return numPieces;
         }
     }
 }
