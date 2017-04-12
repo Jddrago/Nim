@@ -27,7 +27,6 @@ namespace Nim
                 playernumber++;
             }
         }
-
         public void takeTurn()
         {
             Console.WriteLine(getName() + "'s turn.");

@@ -8,7 +8,7 @@ namespace Nim
 {
     class Board
     {
-        public static int numOfPieces = 15, row1mod = 0, row2mod =0, row3mod = 0;
+        public static int numOfPieces = 15, row1mod = 0, row2mod = 0, row3mod = 0;
         static int numRows = 3, numColumns = 7;
         static char[,] pieces = new char[numRows,numColumns];
         static public void setBaseState()
@@ -80,16 +80,6 @@ namespace Nim
                 }
             }
         }
-        static public bool validatePiece(int row, int numOfPiecesToTake)
-        {
-            bool valid = false;
-            switch (row)
-            {
-                
-            }
-            return valid;
-        }
-
         static private void initBoard()
         {
             for (int i = 0; i < numRows; i++)
