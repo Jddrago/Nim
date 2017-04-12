@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +11,7 @@ namespace Nim
 {
     public class Board
     {
-        public static int numOfPieces = 15, row1mod = 0, row2mod =0, row3mod = 0;
+        public static int numOfPieces = 15, row1mod = 0, row2mod = 0, row3mod = 0;
         public static int numRows = 3, numColumns = 7;
         static char[,] pieces = new char[numRows,numColumns];
         static public void setBaseState()
@@ -80,7 +83,6 @@ namespace Nim
                 }
             }
         }
-
         static private void initBoard()
         {
             for (int i = 0; i < numRows; i++)
@@ -90,6 +92,13 @@ namespace Nim
                     pieces[i,j] = new char();
                 }
             }
+        }
+        static public void SaveBoardState(string file)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(file, FileMode.Append, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, pieces);
+            stream.Close();
         }
     }
 }
