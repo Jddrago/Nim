@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nim
 {
-    class Computer : Player
+    public class Computer : Player
     {
         int row1max = Board.numRows, row2max = ((Board.numRows + Board.numColumns) / 2), row3max = Board.numColumns;
 

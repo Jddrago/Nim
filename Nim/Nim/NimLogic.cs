@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nim
 {
-    class NimLogic
+    public class NimLogic
     {
         public Player[] players { get; set; }
 
