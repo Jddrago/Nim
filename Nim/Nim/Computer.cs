@@ -54,23 +54,22 @@ namespace Nim
 
         public int selectPieces(int row)
         {
-            int numPieces;
+            int numPieces = 0;
             bool validNumPieces = true;
             do
             {
-                numPieces = new Random().Next(row1max);
                 switch (row)
                 {
                     case 0:
-                        numPieces = new Random().Next(row1max);
+                        numPieces = new Random().Next(row1max)+1;
                         if (numPieces + Board.row1mod >= row1max) { validNumPieces = false; } else { validNumPieces = true; };
                         break;
                     case 1:
-                        numPieces = new Random().Next(row1max);
+                        numPieces = new Random().Next(row2max)+1;
                         if (numPieces + Board.row2mod >= row2max) { validNumPieces = false; } else { validNumPieces = true; };
                         break;
                     case 2:
-                        numPieces = new Random().Next(row1max);
+                        numPieces = new Random().Next(row3max)+1;
                         if (numPieces + Board.row3mod >= row3max) { validNumPieces = false; } else { validNumPieces = true; };
                         break;
                 }
