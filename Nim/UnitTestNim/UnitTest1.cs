@@ -20,7 +20,7 @@ namespace UnitTestNim
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void SelectingPeicesfromRow2()
         {
             Computer computer = new Computer();
             int numPieces = computer.selectPieces(1);

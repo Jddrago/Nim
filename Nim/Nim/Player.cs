@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nim
 {
+<<<<<<< HEAD
    public class Player
+=======
+    public class Player
+>>>>>>> origin/master
     {
         private static int playernumber = 1;
         string Name { get; set; }
